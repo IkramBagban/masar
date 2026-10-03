@@ -7,12 +7,12 @@ export function SiteFooter() {
 
   return (
     <footer className="border-t border-line bg-[#FAFCFA]">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-12">
+      <div className="mx-auto max-w-[1280px] px-5 py-10 sm:px-6 md:px-10 md:py-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pb-8 border-b border-line">
           <Link to="/" className="flex items-center gap-2.5">
             <Wordmark size="footer" />
           </Link>
-          <div className="flex flex-wrap gap-8 text-[14.5px] font-medium text-ink/70">
+          <div className="flex flex-wrap gap-x-6 gap-y-3 text-[14.5px] font-medium text-ink/70 sm:gap-x-8">
             <a href="#how" className="hover:text-ink transition">
               {t.footer.how}
             </a>

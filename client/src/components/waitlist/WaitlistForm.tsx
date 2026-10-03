@@ -24,7 +24,7 @@ export function WaitlistForm() {
   const done = mutation.isSuccess;
 
   return (
-    <div className="mt-10 bg-white border border-line rounded-[28px] p-6 md:p-9 shadow-[0_20px_50px_-30px_rgba(21,33,31,.25)] text-start">
+    <div className="mt-8 rounded-[24px] border border-line bg-white p-4 text-start shadow-[0_20px_50px_-30px_rgba(21,33,31,.25)] sm:mt-10 sm:p-6 md:rounded-[28px] md:p-9">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid sm:grid-cols-2 gap-4">
           <div>

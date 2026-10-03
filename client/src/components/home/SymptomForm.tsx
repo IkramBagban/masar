@@ -39,11 +39,11 @@ export function SymptomForm() {
   const chips = [t.hero.chip1, t.hero.chip2, t.hero.chip3, t.hero.chip4];
 
   return (
-    <div className="mt-8 bg-white/70 backdrop-blur-md rounded-[28px] p-3 shadow-[0_20px_60px_-24px_rgba(21,33,31,.25)] border border-white/70">
+    <div className="mt-7 rounded-[24px] border border-white/70 bg-white/70 p-2 shadow-[0_20px_60px_-24px_rgba(21,33,31,.25)] backdrop-blur-md sm:mt-8 sm:rounded-[28px] sm:p-3">
       <form
         ref={formRef}
         onSubmit={handleSubmit}
-        className="bg-white rounded-[20px] border border-black/5 shadow-sm flex items-center gap-3 pl-3 pr-2 py-2"
+        className="flex items-center gap-2 rounded-[18px] border border-black/5 bg-white py-2 pl-2 pr-2 shadow-sm sm:gap-3 sm:rounded-[20px] sm:pl-3"
       >
         <span className="w-11 h-11 rounded-full bg-bone grid place-items-center shrink-0">
           <svg
@@ -62,23 +62,23 @@ export function SymptomForm() {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder={t.hero.inputPh}
-          className="flex-1 bg-transparent text-[18px] outline-none placeholder:text-ink/40 min-w-0"
+          className="min-w-0 flex-1 bg-transparent text-[15px] outline-none placeholder:text-ink/40 sm:text-[18px]"
         />
         <button
           ref={btnRef}
           type="submit"
-          className="dir-flip w-12 h-12 shrink-0 rounded-full bg-pine text-white grid place-items-center text-[20px] hover:opacity-90 active:scale-95 transition"
+          className="dir-flip grid h-11 w-11 shrink-0 place-items-center rounded-full bg-pine text-[20px] text-white transition hover:opacity-90 active:scale-95 sm:h-12 sm:w-12"
         >
           →
         </button>
       </form>
-      <div className="flex flex-wrap gap-2 mt-2.5 px-1 pb-1">
+      <div className="mt-2.5 flex flex-wrap gap-1.5 px-1 pb-1 sm:gap-2">
         {chips.map((chip, i) => (
           <button
             key={i}
             type="button"
             onClick={() => setValue(chip)}
-            className="px-4 py-2 rounded-full bg-white border border-black/5 shadow-sm text-[15px] font-medium hover:border-pine/40 transition"
+            className="rounded-full border border-black/5 bg-white px-3 py-2 text-[13px] font-medium shadow-sm transition hover:border-pine/40 sm:px-4 sm:text-[15px]"
           >
             {chip}
           </button>

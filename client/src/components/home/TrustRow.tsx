@@ -4,7 +4,7 @@ export function TrustRow() {
   const { t } = useHomeStrings();
 
   return (
-    <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4 text-[16px] leading-tight">
+    <div className="mt-7 flex flex-wrap gap-x-6 gap-y-4 text-[14px] leading-tight sm:mt-8 sm:gap-x-10 sm:text-[16px]">
       <span className="flex items-center gap-3">
         <svg
           width="28"

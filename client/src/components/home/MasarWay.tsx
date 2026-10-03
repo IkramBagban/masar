@@ -5,7 +5,7 @@ export function MasarWay() {
   const w = t.why;
 
   return (
-    <div className="bg-[#EAF4EE] border border-pine/20 rounded-[28px] p-6 md:p-9">
+    <div className="rounded-[24px] border border-pine/20 bg-[#EAF4EE] p-4 sm:p-6 md:rounded-[28px] md:p-9">
       <p className="flex items-center gap-2.5 text-[13px] font-bold tracking-[.18em] text-slateteal">
         <span className="w-7 h-7 rounded-full bg-pine text-white grid place-items-center text-[14px]">
           ✓
@@ -16,7 +16,7 @@ export function MasarWay() {
         {w.newTitle}
       </h3>
       <div className="relative mt-7 space-y-5">
-        <div className="absolute left-[27px] top-6 bottom-6 w-px bg-pine/15"></div>
+        <div className="absolute start-[27px] top-6 bottom-6 w-px bg-pine/15"></div>
         <div className="relative flex gap-4 items-start">
           <span className="relative z-10 w-14 h-14 shrink-0 rounded-full bg-[#DCE9E2] border-4 border-white shadow-sm grid place-items-center">
             <svg

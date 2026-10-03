@@ -21,14 +21,14 @@ export function Faq() {
   return (
     <section
       id="faq"
-      className="max-w-[1280px] mx-auto px-6 md:px-10 py-16 md:py-24 border-t border-line"
+      className="mx-auto max-w-[1280px] border-t border-line px-5 py-14 sm:px-6 md:px-10 md:py-24"
     >
-      <div className="grid lg:grid-cols-[.9fr_1.1fr] gap-12 items-start max-w-[1180px] mx-auto">
+      <div className="mx-auto grid max-w-[1180px] items-start gap-8 md:gap-12 lg:grid-cols-[.9fr_1.1fr]">
         <div>
           <p className="text-[13px] font-semibold tracking-[.22em] text-slateteal">
             {f.eyebrow}
           </p>
-          <h2 className="serif font-medium text-[38px] md:text-[52px] leading-[1.08] mt-4 text-ink">
+          <h2 className="serif mt-4 text-[clamp(2.25rem,11vw,2.375rem)] font-medium leading-[1.08] text-ink md:text-[52px]">
             <span>{f.titleA}</span>
             <br />
             <span className="text-slateteal">{f.titleB}</span>

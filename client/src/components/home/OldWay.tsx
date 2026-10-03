@@ -5,7 +5,7 @@ export function OldWay() {
   const w = t.why;
 
   return (
-    <div className="bg-[#F7FAF8] border border-line rounded-[28px] p-6 md:p-9">
+    <div className="rounded-[24px] border border-line bg-[#F7FAF8] p-4 sm:p-6 md:rounded-[28px] md:p-9">
       <p className="flex items-center gap-2.5 text-[13px] font-bold tracking-[.18em] text-ink/60">
         <span className="w-7 h-7 rounded-full bg-red-100 text-red-600 grid place-items-center text-[15px] font-bold">
           ✕
@@ -16,7 +16,7 @@ export function OldWay() {
         {w.oldTitle}
       </h3>
       <div className="relative mt-7 space-y-5">
-        <div className="absolute left-[27px] top-6 bottom-6 w-px bg-line"></div>
+        <div className="absolute start-[27px] top-6 bottom-6 w-px bg-line"></div>
         <div className="relative flex gap-4 items-start">
           <span className="relative z-10 w-14 h-14 shrink-0 rounded-full bg-[#F1F4F3] border-4 border-white shadow-sm grid place-items-center">
             <svg

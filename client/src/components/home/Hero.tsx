@@ -26,16 +26,16 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="relative max-w-[1280px] mx-auto px-6 md:px-10 pt-6 md:pt-10 pb-8 grid lg:grid-cols-[1.05fr_.95fr] gap-8 items-center">
+      <div className="relative mx-auto grid max-w-[1280px] items-start gap-10 px-5 pb-10 pt-6 sm:px-6 md:px-10 md:pb-12 md:pt-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-8">
         {/* LEFT */}
-        <div className="max-w-[600px]">
+        <div className="w-full min-w-0 max-w-[600px]">
           <HeroCopy />
           <SymptomForm />
           <TrustRow />
         </div>
 
         {/* RIGHT : compact chat card */}
-        <div className="relative w-full max-w-[460px] justify-self-center lg:justify-self-end">
+        <div className="relative w-full min-w-0 max-w-[460px] justify-self-center lg:justify-self-end">
           <ChatCard />
         </div>
       </div>
