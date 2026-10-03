@@ -22,6 +22,7 @@ html {
   background: var(--color-bone);
   color: var(--color-ink);
   color-scheme: light;
+  overflow-x: hidden;
 }
 
 body {
@@ -32,13 +33,11 @@ body {
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-/* 100% was rendering ~10% too big — match the 90% zoom look */
-@media (min-width: 1024px) {
-  body {
-    zoom: 0.9;
-  }
+#root {
+  min-width: 0;
 }
 
 .serif {
@@ -410,6 +409,17 @@ html[dir="rtl"] .font-display {
   margin-inline: 0;
   width: 100%;
   max-width: 26rem;
+}
+
+@media (max-width: 479px) {
+  .clerk-slot {
+    padding-block: 2.5rem 4rem;
+  }
+
+  .clerk-slot .cl-rootBox,
+  .clerk-slot .cl-cardBox {
+    max-width: 100%;
+  }
 }
 
 .email-value {
