@@ -12,25 +12,18 @@ export function Wordmark({ size = "nav" }: WordmarkProps) {
   const { locale } = useLocale();
   const isAr = locale === "ar";
   return (
-    <span className="flex items-center gap-2.5">
-      <svg
+    <span className="flex items-center gap-2 sm:gap-2.5">
+      <img
+        src="/assets/logo.png"
         width={nav ? 34 : 30}
         height={nav ? 26 : 23}
-        viewBox="0 0 34 26"
-        fill="none"
+        alt=""
         aria-hidden="true"
-      >
-        <path
-          d="M2 24C2 12 8 4 17 4S32 12 32 24"
-          stroke="#0E7A5F"
-          strokeWidth="3.5"
-          strokeLinecap="round"
-        />
-        <path d="M10 24C10 15 13 9 17 9s7 6 7 15" fill="#15211F" />
-      </svg>
+        className={nav ? "h-[23px] w-[30px] object-contain sm:h-[26px] sm:w-[34px]" : "object-contain"}
+      />
       <span
         className={`serif font-semibold tracking-tight ${
-          nav ? "text-[26px]" : "text-[22px] text-ink"
+          nav ? "text-[22px] sm:text-[26px]" : "text-[22px] text-ink"
         } ${isAr ? "font-arabic" : ""}`}
       >
         {isAr ? "مسار" : "Masār"}

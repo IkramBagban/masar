@@ -1,16 +1,15 @@
 import { useHomeStrings } from "./copy";
 
-function MasarAvatar({ size = 16 }: { size?: number }) {
+function MasarAvatar({ size = 22 }: { size?: number }) {
   return (
-    <svg width={size} height={Math.round((size * 12) / 16)} viewBox="0 0 34 26">
-      <path
-        d="M2 24C2 12 8 4 17 4S32 12 32 24"
-        stroke="#0E7A5F"
-        strokeWidth="3.5"
-        strokeLinecap="round"
-      />
-      <path d="M10 24C10 15 13 9 17 9s7 6 7 15" fill="#15211F" />
-    </svg>
+    <img
+      src="/assets/logo.png"
+      width={size}
+      height={Math.round(size / 1.29)}
+      alt=""
+      aria-hidden="true"
+      className="object-contain"
+    />
   );
 }
 
@@ -41,7 +40,7 @@ export function ChatCard() {
       <div className="flex items-center justify-between px-4 pt-3.5 pb-2.5">
         <span className="flex items-center gap-2">
           <span className="w-8 h-8 rounded-full bg-white border border-black/5 shadow-sm grid place-items-center shrink-0">
-            <MasarAvatar size={18} />
+            <MasarAvatar size={24} />
           </span>
           <span>
             <span className="flex items-center gap-1.5 font-semibold text-[14.5px] leading-none">
