@@ -1,0 +1,422 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bone: #ffffff;
+  --color-ink: #15211f;
+  --color-muted: #5c6e6b;
+  --color-slateteal: #0e7a5f;
+  --color-slate: #0e7a5f;
+  --color-line: #e2ece7;
+  --color-pine: #0b3b2e;
+  --color-pill: #0b3b2e;
+  --color-mint: #eaf4ee;
+
+  --font-sans: "Outfit", "Segoe UI", sans-serif;
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-arabic: "Noto Naskh Arabic", "Geeza Pro", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-bone);
+  color: var(--color-ink);
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bone);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 100% was rendering ~10% too big — match the 90% zoom look */
+@media (min-width: 1024px) {
+  body {
+    zoom: 0.9;
+  }
+}
+
+.serif {
+  font-family: "Fraunces", Georgia, serif;
+}
+
+html[dir="rtl"] body,
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3 {
+  font-family: "Noto Naskh Arabic", serif !important;
+}
+
+.hero-blend {
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ffffff 24%,
+    rgba(255, 255, 255, 0.92) 40%,
+    rgba(255, 255, 255, 0.45) 64%,
+    transparent 80%
+  );
+}
+
+html[dir="rtl"] .hero-blend {
+  background: linear-gradient(
+    -90deg,
+    #ffffff 0%,
+    #ffffff 24%,
+    rgba(255, 255, 255, 0.92) 40%,
+    rgba(255, 255, 255, 0.45) 64%,
+    transparent 80%
+  );
+}
+
+.msg {
+  animation: rise 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.stage {
+  opacity: 0;
+  animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+.tdot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #0e7a5f;
+  opacity: 0.4;
+  display: inline-block;
+  animation: tblink 1.2s infinite;
+}
+
+.tdot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.tdot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes tblink {
+  0%,
+  60%,
+  100% {
+    opacity: 0.25;
+    transform: none;
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tdot {
+    animation: none;
+    opacity: 0.5;
+  }
+}
+
+/* FAQ smooth open/close */
+details summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary::marker {
+  content: "";
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+  details::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition:
+      block-size 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+      content-visibility 0.38s;
+    transition-behavior: allow-discrete;
+  }
+  details[open]::details-content {
+    block-size: auto;
+  }
+}
+
+details[open] .plus-icon {
+  transform: rotate(45deg);
+  background: #0b3b2e;
+  color: #fff;
+}
+
+details summary:hover .plus-icon {
+  scale: 1.08;
+}
+
+details summary .plus-icon {
+  transition:
+    transform 0.25s,
+    scale 0.25s,
+    background 0.25s,
+    color 0.25s;
+}
+
+/* small submit animations */
+.nudging {
+  animation: nudge 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes nudge {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  40% {
+    translate: 5px 0;
+  }
+}
+
+@keyframes nudgeR {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  40% {
+    translate: -5px 0;
+  }
+}
+
+html[dir="rtl"] .nudging {
+  animation-name: nudgeR;
+}
+
+.flash {
+  animation: flashRing 0.6s ease-out;
+}
+
+@keyframes flashRing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(14, 122, 95, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 0 12px rgba(14, 122, 95, 0);
+  }
+}
+
+.spin {
+  animation: spinRot 1s linear infinite;
+}
+
+@keyframes spinRot {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nudging,
+  .flash,
+  .spin {
+    animation: none;
+  }
+}
+
+/* language switch: directional staggered cascade toward the new reading direction
+   Original targeted body > header/section/footer (plain HTML).
+   React mounts inside #root > div > header/main/footer, sections inside main,
+   so cover both trees with the same timing. */
+@media (prefers-reduced-motion: no-preference) {
+  body > header,
+  body > section,
+  body > footer,
+  #root > div > header,
+  #root > div > main > section,
+  #root > div > footer {
+    transition:
+      opacity 0.2s ease,
+      translate 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  body.lang-switch > header,
+  body.lang-switch > section,
+  body.lang-switch > footer,
+  body.lang-switch #root > div > header,
+  body.lang-switch #root > div > main > section,
+  body.lang-switch #root > div > footer {
+    opacity: 0;
+  }
+  body.lang-switch.lang-to-ar > header,
+  body.lang-switch.lang-to-ar > section,
+  body.lang-switch.lang-to-ar > footer,
+  body.lang-switch.lang-to-ar #root > div > header,
+  body.lang-switch.lang-to-ar #root > div > main > section,
+  body.lang-switch.lang-to-ar #root > div > footer {
+    translate: -18px 0;
+  }
+  body.lang-switch.lang-to-en > header,
+  body.lang-switch.lang-to-en > section,
+  body.lang-switch.lang-to-en > footer,
+  body.lang-switch.lang-to-en #root > div > header,
+  body.lang-switch.lang-to-en #root > div > main > section,
+  body.lang-switch.lang-to-en #root > div > footer {
+    translate: 18px 0;
+  }
+  body.lang-switch > :nth-child(1),
+  body.lang-switch #root > div > header {
+    transition-delay: 0ms;
+  }
+  body.lang-switch #root > div > main > section:nth-child(1) {
+    transition-delay: 25ms;
+  }
+  body.lang-switch #root > div > main > section:nth-child(2) {
+    transition-delay: 50ms;
+  }
+  body.lang-switch #root > div > main > section:nth-child(3) {
+    transition-delay: 75ms;
+  }
+  body.lang-switch #root > div > main > section:nth-child(4) {
+    transition-delay: 100ms;
+  }
+  body.lang-switch #root > div > main > section:nth-child(5) {
+    transition-delay: 125ms;
+  }
+  body.lang-switch #root > div > footer {
+    transition-delay: 150ms;
+  }
+  body.lang-switch > :nth-child(2) {
+    transition-delay: 25ms;
+  }
+  body.lang-switch > :nth-child(3) {
+    transition-delay: 50ms;
+  }
+  body.lang-switch > :nth-child(4) {
+    transition-delay: 75ms;
+  }
+  body.lang-switch > :nth-child(5) {
+    transition-delay: 100ms;
+  }
+  body.lang-switch > :nth-child(6) {
+    transition-delay: 125ms;
+  }
+  body.lang-switch > :nth-child(7) {
+    transition-delay: 150ms;
+  }
+}
+
+/* HOW step titles: min-h reserves two English lines for alignment.
+   Arabic titles are all one line, so release it in RTL to avoid the gap. */
+@media (min-width: 768px) {
+  html[dir="rtl"] .step-title {
+    min-height: auto;
+  }
+}
+
+/* RTL: mirror direction-sensitive arrows */
+html[dir="rtl"] .dir-flip {
+  transform: scaleX(-1);
+}
+
+html[dir="rtl"] .why-arrow {
+  rotate: 180deg;
+}
+
+::selection {
+  background: #0e7a5f;
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-slateteal);
+  outline-offset: 3px;
+}
+
+.frame {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .frame {
+    padding-inline: 2rem;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+html[dir="rtl"] .font-display {
+  font-family: var(--font-arabic);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.field input {
+  border: 1px solid var(--color-line);
+  background: var(--color-bone);
+  color: var(--color-ink);
+  border-radius: 0.5rem;
+  padding-block: 0.7rem;
+  padding-inline: 0.75rem;
+  font: inherit;
+  font-size: 1rem;
+}
+
+.field input:focus-visible {
+  border-color: var(--color-slateteal);
+}
+
+.clerk-slot {
+  display: flex;
+  justify-content: flex-start;
+  padding-block: 3.5rem 5rem;
+}
+
+.clerk-slot .cl-rootBox,
+.clerk-slot .cl-cardBox {
+  margin-inline: 0;
+  width: 100%;
+  max-width: 26rem;
+}
+
+.email-value {
+  overflow-wrap: anywhere;
+}
+
+.ltr-isolate {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
