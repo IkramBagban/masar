@@ -10,17 +10,18 @@ export function LanguageToggle() {
     <button
       type="button"
       onClick={() => setLocale(isEn ? "ar" : "en")}
-      className="flex items-center bg-[#EAF4EE] border border-line rounded-full p-1 text-[14px] font-semibold"
+      aria-label={isEn ? "Switch to Arabic" : "Switch to English"}
+      className="flex shrink-0 items-center rounded-full border border-line bg-[#EAF4EE] p-1 text-[13px] font-semibold sm:text-[14px]"
     >
       <span
-        className={`px-5 py-2 rounded-full transition ${
+        className={`rounded-full px-3 py-2 transition sm:px-5 ${
           isEn ? "bg-white shadow-sm text-ink" : "text-ink/50"
         }`}
       >
         English
       </span>
       <span
-        className={`px-5 py-2 rounded-full transition ${
+        className={`rounded-full px-3 py-2 transition sm:px-5 ${
           isEn ? "text-ink/50" : "bg-white shadow-sm text-ink"
         }`}
       >
