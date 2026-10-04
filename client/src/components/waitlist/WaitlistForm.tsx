@@ -64,7 +64,7 @@ export function WaitlistForm() {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="ayesha@example.com"
+              placeholder="ikrambagban.dev@gmail.com"
               disabled={sending || done}
               className="w-full bg-[#FAFCFA] border border-line rounded-[18px] px-4 py-3 text-[15px] outline-none focus:border-pine transition text-left"
             />

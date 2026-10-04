@@ -286,7 +286,7 @@ export const en: Dictionary = {
     titleB: "Join the waitlist.",
     lede: "Be first to access Masār across the Gulf. Get priority navigation guidance and clinic notes for you and your family.",
     nameLabel: "Full Name",
-    namePh: "Ayesha Al-Maktoum",
+    namePh: "Ikram Bagban",
     emailLabel: "Email Address",
     cta: "Request early access →",
     ctaSuccess: "You're on the list ✓",
