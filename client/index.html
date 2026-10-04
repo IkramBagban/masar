@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,11 +20,17 @@
         var stored =
           localStorage.getItem("masar-locale") ||
           localStorage.getItem("wasit-lang");
-        if (stored === "ar") {
+        if (stored === "en") {
+          document.documentElement.lang = "en";
+          document.documentElement.dir = "ltr";
+        } else {
           document.documentElement.lang = "ar";
           document.documentElement.dir = "rtl";
         }
-      } catch (e) {}
+      } catch (e) {
+        document.documentElement.lang = "ar";
+        document.documentElement.dir = "rtl";
+      }
     </script>
   </head>
   <body>
