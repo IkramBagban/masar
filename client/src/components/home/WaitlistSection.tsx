@@ -8,7 +8,7 @@ export function WaitlistSection() {
   return (
     <section
       id="waitlist"
-      className="mx-auto max-w-[1280px] border-t border-line px-5 py-14 sm:px-6 md:px-10 md:py-24"
+      className="mx-auto max-w-[1280px] scroll-mt-24 border-t border-line px-5 py-14 sm:px-6 md:px-10 md:py-24"
     >
       <div className="max-w-[760px] mx-auto text-center">
         <span className="inline-flex items-center gap-2 bg-[#EAF4EE] text-pine text-[12.5px] font-semibold px-4 py-1.5 rounded-full border border-pine/20 mb-3 shadow-sm">
