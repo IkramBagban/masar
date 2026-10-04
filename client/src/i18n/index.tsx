@@ -32,7 +32,7 @@ export function readLocale(): Locale {
   } catch {
     /* storage unavailable */
   }
-  return "en";
+  return "ar";
 }
 
 export function applyLocale(locale: Locale): void {

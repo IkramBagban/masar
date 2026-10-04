@@ -7,19 +7,33 @@ import { HomePage } from "./pages/HomePage";
 import { SignInPage } from "./pages/SignInPage";
 import { SignUpPage } from "./pages/SignUpPage";
 
-// Plain <a href="#id"> links only change the hash — the browser doesn't
-// always scroll inside the React shell, so settle on the section ourselves.
+// Section links live in the global header/footer but the targets only exist
+// on "/". Plain <a href="#id"> breaks off-home, so header/footer link to
+// "/#id" and we settle on the section after the route renders.
 function ScrollToHash() {
-  const { hash } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
     if (!hash) return;
-    const el = document.querySelector(hash);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, [hash]);
+    let cancelled = false;
+    const scroll = () => {
+      if (cancelled) return;
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    const raf = requestAnimationFrame(scroll);
+    const timer = window.setTimeout(scroll, 80);
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(raf);
+      window.clearTimeout(timer);
+    };
+  }, [pathname, hash]);
   return null;
 }
 
 export function App() {
+  const { pathname } = useLocation();
+  const isHome = pathname === "/";
   return (
     <div className="flex min-h-screen min-w-0 flex-col bg-bone text-ink">
       <ScrollToHash />
@@ -33,7 +47,7 @@ export function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
-      <SiteFooter />
+      {isHome && <SiteFooter />}
     </div>
   );
 }

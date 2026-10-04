@@ -13,18 +13,18 @@ export function SiteFooter() {
             <Wordmark size="footer" />
           </Link>
           <div className="flex flex-wrap gap-x-6 gap-y-3 text-[14.5px] font-medium text-ink/70 sm:gap-x-8">
-            <a href="#how" className="hover:text-ink transition">
+            <Link to="/#how" className="hover:text-ink transition">
               {t.footer.how}
-            </a>
-            <a href="#why" className="hover:text-ink">
+            </Link>
+            <Link to="/#why" className="hover:text-ink">
               {t.footer.why}
-            </a>
-            <a href="#faq" className="hover:text-ink">
+            </Link>
+            <Link to="/#faq" className="hover:text-ink">
               {t.footer.faq}
-            </a>
-            <a href="#waitlist" className="hover:text-ink transition">
+            </Link>
+            <Link to="/#waitlist" className="hover:text-ink transition">
               {t.footer.waitlist}
-            </a>
+            </Link>
             <Link to="/account" className="hover:text-ink transition">
               {t.footer.account}
             </Link>
