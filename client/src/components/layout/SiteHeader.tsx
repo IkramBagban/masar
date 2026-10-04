@@ -24,11 +24,27 @@ function initialsFor(
 function HeaderAuth() {
   const { isLoaded, isSignedIn } = useAuth();
   const { t } = useLocale();
-  if (!isLoaded || !isSignedIn) return null;
-  return <UserChip signOutLabel={t.account.signOut} />;
+  if (!isLoaded) return null;
+  if (!isSignedIn) {
+    return (
+      <Link
+        to="/sign-in"
+        className="inline-flex shrink-0 items-center rounded-full border border-line px-5 py-3 text-[15px] font-semibold text-ink transition hover:bg-white"
+      >
+        {t.nav.signIn}
+      </Link>
+    );
+  }
+  return <UserChip accountLabel={t.nav.account} signOutLabel={t.account.signOut} />;
 }
 
-function UserChip({ signOutLabel }: { signOutLabel: string }) {
+function UserChip({
+  accountLabel,
+  signOutLabel,
+}: {
+  accountLabel: string;
+  signOutLabel: string;
+}) {
   const { user } = useUser();
   const { signOut } = useClerk();
   const navigate = useNavigate();
@@ -87,9 +103,17 @@ function UserChip({ signOutLabel }: { signOutLabel: string }) {
       {open && (
         <div
           role="menu"
-          className="absolute end-0 top-full z-50 mt-2 w-52 overflow-hidden rounded-2xl border border-line bg-white p-1.5 shadow-[0_20px_50px_-20px_rgba(21,33,31,.35)]"
-        >
-          <button
+            className="absolute end-0 top-full z-50 mt-2 w-52 overflow-hidden rounded-2xl border border-line bg-white p-1.5 shadow-[0_20px_50px_-20px_rgba(21,33,31,.35)]"
+          >
+            <Link
+              to="/account"
+              role="menuitem"
+              onClick={() => setOpen(false)}
+              className="flex w-full cursor-pointer items-center gap-2.5 rounded-xl px-3 py-2.5 text-start text-[14px] font-medium text-ink hover:bg-bone"
+            >
+              {accountLabel}
+            </Link>
+            <button
             type="button"
             role="menuitem"
             onClick={() => void handleSignOut()}
