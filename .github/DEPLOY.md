@@ -11,7 +11,8 @@ with `--restart always` on `127.0.0.1:3001`. The container runs
 
 ## One-time setup
 
-1. Authorize the deploy key on the VM (as `ikrambagban`):
+1. Authorize the deploy key on the VM (as `bagbanikram` — the username in
+   the instance metadata):
    `~/.ssh/authorized_keys` must contain:
    ```
    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDYsxNPp1LeUf/V6jLdC/Ip4LZtbKTILMID2X53RsbPl masar-backend-deploy
@@ -21,7 +22,7 @@ with `--restart always` on `127.0.0.1:3001`. The container runs
 3. GitHub secrets (repo Settings → Secrets → Actions) — already set except
    Docker Hub + Clerk prod keys:
    - `VM_HOST` = `34.124.191.101` ✅
-   - `VM_USERNAME` = `ikrambagban` ✅
+   - `VM_USERNAME` = `bagbanikram` ✅
    - `VM_SSH_KEY` = private half of the key above ✅
    - `DATABASE_URL` = Neon prod url ✅
    - `CLIENT_ORIGIN` = `https://masar-ikrambagbans-projects.vercel.app` ✅
