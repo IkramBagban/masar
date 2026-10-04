@@ -1,8 +1,17 @@
-import { SignIn } from "@clerk/clerk-react";
+import { SignIn, useAuth } from "@clerk/clerk-react";
+import { Navigate } from "react-router";
 import { AuthLayout, authAppearance } from "../components/auth/AuthLayout";
 import { useLocale } from "../i18n";
 
 const clerkEnabled = Boolean(import.meta.env.VITE_CLERK_PUBLISHABLE_KEY);
+
+export function RedirectIfSignedIn() {
+  const { isLoaded, isSignedIn } = useAuth();
+  if (isLoaded && isSignedIn) {
+    return <Navigate to="/account" replace />;
+  }
+  return null;
+}
 
 export function SignInPage() {
   const { t } = useLocale();
@@ -17,6 +26,7 @@ export function SignInPage() {
 
   return (
     <AuthLayout mode="sign-in">
+      <RedirectIfSignedIn />
       <SignIn
         routing="path"
         path="/sign-in"

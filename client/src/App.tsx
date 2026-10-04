@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router";
+import { useAuth } from "@clerk/clerk-react";
 import { SiteFooter } from "./components/layout/SiteFooter";
 import { SiteHeader } from "./components/layout/SiteHeader";
 import { AccountPage } from "./pages/AccountPage";
@@ -31,12 +32,27 @@ function ScrollToHash() {
   return null;
 }
 
+// Email-link verification opens a fresh tab on "/" with __clerk_status in
+// the URL, bypassing the auth pages entirely. Catch it and send fresh
+// sessions to /account. Rendered only when Clerk is configured (main.tsx).
+function EmailLinkReturn() {
+  const { hash } = useLocation();
+  const { isLoaded, isSignedIn } = useAuth();
+  const params = new URLSearchParams(window.location.search);
+  if (params.has("__clerk_status") && isLoaded && isSignedIn && !hash) {
+    return <Navigate to="/account" replace />;
+  }
+  return null;
+}
+
 export function App() {
   const { pathname } = useLocation();
   const isHome = pathname === "/";
+  const clerkEnabled = Boolean(import.meta.env.VITE_CLERK_PUBLISHABLE_KEY);
   return (
     <div className="flex min-h-screen min-w-0 flex-col bg-bone text-ink">
       <ScrollToHash />
+      {clerkEnabled && <EmailLinkReturn />}
       <SiteHeader />
       <main className="min-w-0 flex-1">
         <Routes>

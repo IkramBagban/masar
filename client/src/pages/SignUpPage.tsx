@@ -1,6 +1,7 @@
 import { SignUp } from "@clerk/clerk-react";
 import { AuthLayout, authAppearance } from "../components/auth/AuthLayout";
 import { useLocale } from "../i18n";
+import { RedirectIfSignedIn } from "./SignInPage";
 
 const clerkEnabled = Boolean(import.meta.env.VITE_CLERK_PUBLISHABLE_KEY);
 
@@ -17,6 +18,7 @@ export function SignUpPage() {
 
   return (
     <AuthLayout mode="sign-up">
+      <RedirectIfSignedIn />
       <SignUp
         routing="path"
         path="/sign-up"
