@@ -21,10 +21,10 @@ function ScrollToHash() {
 
 export function App() {
   return (
-    <div className="flex min-h-screen flex-col bg-bone text-ink">
+    <div className="flex min-h-screen min-w-0 flex-col bg-bone text-ink">
       <ScrollToHash />
       <SiteHeader />
-      <main className="flex-1">
+      <main className="min-w-0 flex-1">
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="sign-in/*" element={<SignInPage />} />

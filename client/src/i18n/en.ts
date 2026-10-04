@@ -146,6 +146,19 @@ export type Dictionary = {
     authMissing: string;
     signOut: string;
   };
+  auth: {
+    eyebrow: string;
+    signInTitle: string;
+    signInLede: string;
+    signUpTitle: string;
+    signUpLede: string;
+    p1t: string;
+    p1d: string;
+    p2t: string;
+    p2d: string;
+    p3t: string;
+    p3d: string;
+  };
 };
 
 export const en: Dictionary = {
@@ -295,5 +308,19 @@ export const en: Dictionary = {
     authMissing:
       "Authentication is not configured. Set VITE_CLERK_PUBLISHABLE_KEY to enable sign-in.",
     signOut: "Sign out",
+  },
+  auth: {
+    eyebrow: "MASĀR ACCOUNT",
+    signInTitle: "Welcome back.",
+    signInLede:
+      "Sign in to keep your waitlist spot and manage your account.",
+    signUpTitle: "Create your account.",
+    signUpLede: "Sign up so we can invite you when Batch 1 opens.",
+    p1t: "Right specialist",
+    p1d: "Know which clinician to consider.",
+    p2t: "Urgency, calmly",
+    p2d: "Understand how soon to act.",
+    p3t: "What to say",
+    p3d: "Arrive with a simple summary.",
   },
 };

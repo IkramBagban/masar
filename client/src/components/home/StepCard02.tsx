@@ -12,20 +12,6 @@ export function StepCard02() {
       </span>
       <div className="mt-3 flex-1 bg-white border border-line rounded-[24px] p-4 shadow-[0_20px_50px_-30px_rgba(21,33,31,.35)]">
         <div className="flex gap-2.5 items-start">
-          <svg
-            width="24"
-            height="19"
-            viewBox="0 0 34 26"
-            className="shrink-0 mt-1"
-          >
-            <path
-              d="M2 24C2 12 8 4 17 4S32 12 32 24"
-              stroke="#0E7A5F"
-              strokeWidth="3.5"
-              strokeLinecap="round"
-            />
-            <path d="M10 24C10 15 13 9 17 9s7 6 7 15" fill="#15211F" />
-          </svg>
           <p className="bg-bone/70 rounded-2xl rounded-tl-md px-4 py-3 text-[14px] font-medium">
             {t.how.card2q}
           </p>

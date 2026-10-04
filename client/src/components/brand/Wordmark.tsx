@@ -23,7 +23,9 @@ export function Wordmark({ size = "nav" }: WordmarkProps) {
       />
       <span
         className={`serif font-semibold tracking-tight ${
-          nav ? "text-[22px] sm:text-[26px]" : "text-[22px] text-ink"
+          nav
+            ? "hidden text-[22px] min-[400px]:inline sm:text-[26px]"
+            : "text-[22px] text-ink"
         } ${isAr ? "font-arabic" : ""}`}
       >
         {isAr ? "مسار" : "Masār"}

@@ -139,7 +139,7 @@ export function ChatCard() {
       </div>
       {/* input + send */}
       <div className="px-3.5 pb-3.5">
-        <div className="bg-white border border-black/5 shadow-sm rounded-full flex items-center gap-2 pl-4 pr-1.5 py-1.5">
+        <div className="bg-white border border-black/5 rounded-full flex items-center gap-2 pl-4 pr-1.5 py-1.5">
           <input
             disabled
             placeholder={t.chat.inputPh}
