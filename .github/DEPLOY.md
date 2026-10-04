@@ -6,8 +6,10 @@ Workflow: `.github/workflows/backend-deploy.yml` — on push to `main` touching
 VM (appleboy/ssh-action), pulls, and runs the container as `masar-server`
 with `--restart always` on `127.0.0.1:3001`. The container runs
 `drizzle-kit migrate` against the external Neon Postgres on startup
-(no DB container), then starts the API. Deploys to
-`https://api.masar.querywise.tech` via nginx on the VM.
+(no DB container), then starts the API. Served publicly at
+`https://masar-api.querywise.tech` via nginx + certbot on the VM.
+(Note: first-level subdomain is required — Cloudflare's free Universal SSL
+does not cover second-level names like `api.masar.*`.)
 
 ## One-time setup
 
@@ -30,15 +32,16 @@ with `--restart always` on `127.0.0.1:3001`. The container runs
    - `CLERK_PUBLISHABLE_KEY` / `CLERK_SECRET_KEY` /
      `CLERK_WEBHOOK_SIGNING_SECRET` — TODO when prod Clerk app is ready.
      Until then `/api/account` returns 503; waitlist + health work normally.
-4. Cloudflare dashboard (`querywise.tech`): `A` record `api.masar` →
-   `34.124.191.101` (manual — API token lacks DNS scope). Then on the VM:
-   install docker + nginx + certbot, proxy
-   `https://api.masar.querywise.tech` → `http://localhost:3001`.
+4. DNS + nginx (done 2026-10-04): `A` record `masar-api` →
+   `34.124.191.101`, nginx vhost `/etc/nginx/sites-available/masar-api`
+   proxying to `http://localhost:3001`, cert via
+   `certbot --nginx -d masar-api.querywise.tech`.
 
 ## Frontend (Vercel)
 
-- Project `masar` exists (Root Directory = `client`, framework = Vite).
-- Env set: `VITE_API_URL=https://api.masar.querywise.tech` (Production).
+- Project `masar` exists (Root Directory = `client`, framework = Vite),
+  GitHub-connected, live at `https://masar.querywise.tech`.
+- Env set: `VITE_API_URL=https://masar-api.querywise.tech` (Production).
 - TODO: connect GitHub repo in project Settings → Git (install Vercel
   GitHub App) for auto-deploys; add `VITE_CLERK_PUBLISHABLE_KEY` (prod).
 - `client/vercel.json` handles SPA rewrites.
