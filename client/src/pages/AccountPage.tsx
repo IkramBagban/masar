@@ -14,6 +14,50 @@ export function AccountPage() {
   return <AccountGate />;
 }
 
+function AccountSkeleton() {
+  const { t } = useLocale();
+  return (
+    <div
+      className="mx-auto w-full max-w-[1280px] px-5 py-10 sm:px-6 md:px-10 md:py-14"
+      role="status"
+      aria-label={t.account.loading}
+    >
+      <div className="grid animate-pulse items-start gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-12">
+        <section className="min-w-0">
+          <div className="h-3 w-40 rounded-full bg-ink/10" />
+          <div className="mt-4 h-14 w-3/4 rounded-2xl bg-ink/10" />
+          <div className="mt-5 space-y-2.5">
+            <div className="h-4 w-full rounded-full bg-ink/10" />
+            <div className="h-4 w-5/6 rounded-full bg-ink/10" />
+          </div>
+          <div className="mt-8 h-44 rounded-[24px] bg-ink/10" />
+        </section>
+        <section className="min-w-0 rounded-[24px] border border-line bg-white p-6 sm:p-8">
+          <div className="h-7 w-48 rounded-full bg-ink/10" />
+          <div className="mt-2 h-4 w-64 rounded-full bg-ink/10" />
+          <div className="mt-6 space-y-4 border-t border-line pt-6">
+            <div className="flex items-center gap-4">
+              <div className="size-12 shrink-0 rounded-2xl bg-ink/10" />
+              <div className="flex-1 space-y-2">
+                <div className="h-3 w-24 rounded-full bg-ink/10" />
+                <div className="h-4 w-48 rounded-full bg-ink/10" />
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="size-12 shrink-0 rounded-2xl bg-ink/10" />
+              <div className="flex-1 space-y-2">
+                <div className="h-3 w-24 rounded-full bg-ink/10" />
+                <div className="h-4 w-36 rounded-full bg-ink/10" />
+              </div>
+            </div>
+          </div>
+          <div className="mt-6 h-14 w-full rounded-2xl bg-ink/10" />
+        </section>
+      </div>
+    </div>
+  );
+}
+
 function ClerkMissing() {
   const { t } = useLocale();
   return (
@@ -25,17 +69,9 @@ function ClerkMissing() {
 
 function AccountGate() {
   const { isLoaded, isSignedIn } = useAuth();
-  const { t } = useLocale();
 
   if (!isLoaded) {
-    return (
-      <p
-        className="mx-auto w-full max-w-[1280px] px-5 py-24 text-start text-ink sm:px-6 md:px-10"
-        role="status"
-      >
-        {t.account.loading}
-      </p>
-    );
+    return <AccountSkeleton />;
   }
 
   if (!isSignedIn) {
@@ -61,14 +97,7 @@ function AccountData() {
   });
 
   if (account.isPending) {
-    return (
-      <p
-        className="mx-auto w-full max-w-[1280px] px-5 py-24 text-start text-ink sm:px-6 md:px-10"
-        role="status"
-      >
-        {t.account.loading}
-      </p>
-    );
+    return <AccountSkeleton />;
   }
 
   if (account.isError) {

@@ -1,6 +1,24 @@
 import { Link } from "react-router";
+import { useAuth } from "@clerk/clerk-react";
 import { useLocale } from "../../i18n";
 import { Wordmark } from "../brand/Wordmark";
+
+const clerkEnabled = Boolean(import.meta.env.VITE_CLERK_PUBLISHABLE_KEY);
+
+function AccountLink() {
+  const { t } = useLocale();
+  const { isLoaded, isSignedIn } = useAuth();
+  if (!isLoaded) return null;
+  return isSignedIn ? (
+    <Link to="/account" className="hover:text-ink transition">
+      {t.footer.account}
+    </Link>
+  ) : (
+    <Link to="/sign-in" className="hover:text-ink transition">
+      {t.nav.signIn}
+    </Link>
+  );
+}
 
 export function SiteFooter() {
   const { t } = useLocale();
@@ -25,9 +43,13 @@ export function SiteFooter() {
             <Link to="/#waitlist" className="hover:text-ink transition">
               {t.footer.waitlist}
             </Link>
-            <Link to="/account" className="hover:text-ink transition">
-              {t.footer.account}
-            </Link>
+            {clerkEnabled ? (
+              <AccountLink />
+            ) : (
+              <Link to="/account" className="hover:text-ink transition">
+                {t.footer.account}
+              </Link>
+            )}
           </div>
         </div>
         <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-[13px] text-ink/50">
