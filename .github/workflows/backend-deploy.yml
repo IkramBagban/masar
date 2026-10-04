@@ -1,89 +1,71 @@
 name: backend-deploy
 
-# Deploys the Express API (server/) to the GCP VM on every push to main
-# that touches the server. The VM runs the compiled output with pm2 and
-# connects to the external Postgres via DATABASE_URL (no DB container).
+# Builds the Express API (server/) into a Docker image, pushes it to
+# Docker Hub, and runs it on the GCP VM. External Postgres via
+# DATABASE_URL — no DB container.
 #
-# Required GitHub secrets (repo: IkramBagban/masar -> Settings -> Secrets):
-#   VM_HOST              VM external IP or hostname
-#   VM_USER              SSH user on the VM (must have the public key below)
-#   VM_SSH_PRIVATE_KEY   Private half of the deploy key (see .github/DEPLOY.md)
-#   APP_ENV_FILE         Full contents of the production .env file for the
-#                        repo root on the VM (DATABASE_URL, PORT,
-#                        CLIENT_ORIGIN, CLERK_SECRET_KEY,
-#                        CLERK_WEBHOOK_SIGNING_SECRET, ...)
+# Required repo settings (IkramBagban/masar -> Settings -> Secrets/Variables):
+#   vars:    DOCKERHUB_USERNAME
+#   secrets: DOCKERHUB_TOKEN, VM_HOST, VM_USERNAME, VM_SSH_KEY,
+#            DATABASE_URL, CLIENT_ORIGIN,
+#            CLERK_PUBLISHABLE_KEY, CLERK_SECRET_KEY,
+#            CLERK_WEBHOOK_SIGNING_SECRET (add when prod Clerk app is ready)
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "server/**"
-      - "package.json"
-      - "package-lock.json"
-      - ".github/workflows/backend-deploy.yml"
   workflow_dispatch:
-
-concurrency:
-  group: backend-deploy
-  cancel-in-progress: false
+  push:
+    branches:
+      - main
+    paths:
+      - 'server/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/backend-deploy.yml'
 
 jobs:
-  build:
-    name: typecheck + build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run build -w server
-
   deploy:
-    name: deploy to VM
     runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Start ssh-agent
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
 
-      - name: Deploy over SSH
-        env:
-          VM_HOST: ${{ secrets.VM_HOST }}
-          VM_USER: ${{ secrets.VM_USER }}
-          APP_ENV_FILE: ${{ secrets.APP_ENV_FILE }}
-        run: |
-          set -euo pipefail
-          ssh -o StrictHostKeyChecking=accept-new "$VM_USER@$VM_HOST" "APP_ENV_FILE=$(printf '%s' "$APP_ENV_FILE" | base64 -w0) bash -s" <<'EOF'
-          set -euo pipefail
-          APP_DIR="$HOME/masar"
-          if [ ! -d "$APP_DIR/.git" ]; then
-            git clone https://github.com/IkramBagban/masar.git "$APP_DIR"
-          fi
-          cd "$APP_DIR"
-          git fetch origin main
-          git reset --hard origin/main
-          printf '%s' "$APP_ENV_FILE" | base64 -d > .env
-          chmod 600 .env
-          if ! command -v node >/dev/null 2>&1; then
-            curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
-            sudo apt-get install -y nodejs
-          fi
-          if ! command -v pm2 >/dev/null 2>&1; then
-            sudo npm install -g pm2
-          fi
-          npm ci
-          npm run build -w server
-          npm run db:migrate -w server
-          if pm2 describe masar-api >/dev/null 2>&1; then
-            pm2 restart masar-api --update-env
-          else
-            pm2 start server/dist/index.js --name masar-api
-          fi
-          pm2 save
-          sleep 3
-          curl -fsS http://localhost:${PORT:-3001}/api/health
-          EOF
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./server/Dockerfile
+          push: true
+          tags: |
+            ikrambagban/masar-server:${{ github.sha }}
+            ikrambagban/masar-server:latest
+
+      - name: Deploy to VM
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USERNAME }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          script: |
+            docker pull ikrambagban/masar-server:${{ github.sha }}
+            docker stop masar-server || true
+            docker rm masar-server || true
+            docker run -d \
+              --name masar-server \
+              --restart always \
+              -p 127.0.0.1:3001:3001 \
+              -e DATABASE_URL="${{ secrets.DATABASE_URL }}" \
+              -e PORT="3001" \
+              -e CLIENT_ORIGIN="${{ secrets.CLIENT_ORIGIN }}" \
+              -e CLERK_PUBLISHABLE_KEY="${{ secrets.CLERK_PUBLISHABLE_KEY }}" \
+              -e CLERK_SECRET_KEY="${{ secrets.CLERK_SECRET_KEY }}" \
+              -e CLERK_WEBHOOK_SIGNING_SECRET="${{ secrets.CLERK_WEBHOOK_SIGNING_SECRET }}" \
+              ikrambagban/masar-server:${{ github.sha }}
+            sleep 8
+            curl -fsS http://localhost:3001/api/health
