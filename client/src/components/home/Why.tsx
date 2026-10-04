@@ -1,4 +1,5 @@
 import { useLocale } from "../../i18n";
+import { CheckIcon, CrossIcon } from "../icons";
 
 // WHY as editorial rows in two columns: fears left, steps right.
 // Compact by design — the whole section fits a laptop viewport.
@@ -39,9 +40,9 @@ export function Why() {
               <p className="flex items-center gap-3 text-[12px] font-bold tracking-[.2em] text-ink/40">
                 <span
                   aria-hidden="true"
-                  className="grid h-6 w-6 place-items-center rounded-full bg-red-100 text-[12px] font-bold text-red-600"
+                  className="grid h-6 w-6 place-items-center rounded-full bg-red-100 text-red-600"
                 >
-                  ✕
+                  <CrossIcon size={12} />
                 </span>
                 <span>{w.oldLabel}</span>
                 <span aria-hidden="true" className="h-px flex-1 bg-line" />
@@ -79,9 +80,9 @@ export function Why() {
               <p className="flex items-center gap-3 text-[12px] font-bold tracking-[.2em] text-slateteal">
                 <span
                   aria-hidden="true"
-                  className="grid h-6 w-6 place-items-center rounded-full bg-pine text-[12px] text-white"
+                  className="grid h-6 w-6 place-items-center rounded-full bg-pine text-white"
                 >
-                  ✓
+                  <CheckIcon size={12} />
                 </span>
                 <span>{w.newLabel}</span>
                 <span aria-hidden="true" className="h-px flex-1 bg-pine/20" />

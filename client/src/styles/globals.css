@@ -75,8 +75,9 @@ html[dir="rtl"] .hero-blend {
   );
 }
 
-/* Hero chat card renders at 95% — the 100% height crowds the fold */
-.chat-card {
+/* Render an element at 95% — same effect as browser zoom-out,
+   scoped so the rest of the page is untouched */
+.zoom-95 {
   zoom: 0.95;
 }
 
@@ -103,6 +104,36 @@ html[dir="rtl"] .hero-blend {
 @media (prefers-reduced-motion: reduce) {
   .stage {
     opacity: 1;
+    animation: none;
+  }
+}
+
+/* Symptom input equalizer: voice-like bars at rest */
+.eq-bar {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: eqBounce 1.1s ease-in-out infinite;
+}
+.eq-bar:nth-child(2) {
+  animation-delay: 0.12s;
+}
+.eq-bar:nth-child(3) {
+  animation-delay: 0.24s;
+}
+.eq-bar:nth-child(4) {
+  animation-delay: 0.36s;
+}
+@keyframes eqBounce {
+  0%,
+  100% {
+    transform: scaleY(0.45);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .eq-bar {
     animation: none;
   }
 }

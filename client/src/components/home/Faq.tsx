@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocale } from "../../i18n";
+import { PlusIcon } from "../icons";
 
 export function Faq() {
   const { t } = useLocale();
@@ -75,13 +76,13 @@ export function Faq() {
                   <span>{item.q}</span>
                   <span
                     aria-hidden="true"
-                    className={`plus-icon w-8 h-8 rounded-full font-bold grid place-items-center text-[18px] shrink-0 transition-transform duration-200 ${
+                    className={`plus-icon w-8 h-8 rounded-full grid place-items-center shrink-0 transition-transform duration-200 ${
                       open
                         ? "bg-pine text-white rotate-45"
                         : "bg-[#EAF4EE] text-pine"
                     }`}
                   >
-                    +
+                    <PlusIcon size={16} />
                   </span>
                 </summary>
                 <p className="text-ink/60 text-[15px] mt-3 leading-relaxed">

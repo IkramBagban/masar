@@ -1,3 +1,4 @@
+import { CheckIcon } from "../icons";
 import { useHomeStrings } from "./copy";
 
 export function StepCard02() {
@@ -37,8 +38,8 @@ export function StepCard02() {
                 className="flex items-center justify-between bg-[#EAF3EC] border border-pine/25 rounded-xl px-4 py-2.5"
               >
                 <span>{opt}</span>
-                <span className="w-6 h-6 rounded-full bg-pine text-white grid place-items-center text-[13px]">
-                  ✓
+                <span className="w-6 h-6 rounded-full bg-pine text-white grid place-items-center">
+                  <CheckIcon size={13} />
                 </span>
               </div>
             ) : (

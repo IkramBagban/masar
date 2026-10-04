@@ -7,7 +7,7 @@ export function How() {
   const { t } = useHomeStrings();
 
   return (
-    <section id="how">
+    <section id="how" className="zoom-95">
       <div className="relative mx-auto max-w-[1240px] scroll-mt-24 px-5 pb-14 pt-14 text-center sm:px-6 md:px-10 md:pb-16 md:pt-16">
         <p className="text-[12.5px] font-semibold tracking-[.22em] text-muted">
           {t.how.eyebrow}
