@@ -1,4 +1,5 @@
-import { Navigate, Route, Routes } from "react-router";
+import { useEffect } from "react";
+import { Navigate, Route, Routes, useLocation } from "react-router";
 import { SiteFooter } from "./components/layout/SiteFooter";
 import { SiteHeader } from "./components/layout/SiteHeader";
 import { AccountPage } from "./pages/AccountPage";
@@ -6,9 +7,22 @@ import { HomePage } from "./pages/HomePage";
 import { SignInPage } from "./pages/SignInPage";
 import { SignUpPage } from "./pages/SignUpPage";
 
+// Plain <a href="#id"> links only change the hash — the browser doesn't
+// always scroll inside the React shell, so settle on the section ourselves.
+function ScrollToHash() {
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (!hash) return;
+    const el = document.querySelector(hash);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [hash]);
+  return null;
+}
+
 export function App() {
   return (
     <div className="flex min-h-screen flex-col bg-bone text-ink">
+      <ScrollToHash />
       <SiteHeader />
       <main className="flex-1">
         <Routes>
