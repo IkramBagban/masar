@@ -7,7 +7,7 @@ export function SiteHeader() {
   const { t } = useLocale();
 
   return (
-    <header className="w-full">
+    <header className="sticky top-0 z-50 w-full bg-bone/60 backdrop-blur-xl backdrop-saturate-150">
       <div className="mx-auto flex h-[68px] max-w-[1280px] items-center justify-between gap-2 px-5 sm:gap-4 sm:px-6 md:px-10">
         <Link to="/" className="flex min-w-0 items-center gap-2.5">
           <Wordmark size="nav" />
