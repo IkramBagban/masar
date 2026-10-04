@@ -1,4 +1,5 @@
 import { SignIn } from "@clerk/clerk-react";
+import { AuthLayout, authAppearance } from "../components/auth/AuthLayout";
 import { useLocale } from "../i18n";
 
 const clerkEnabled = Boolean(import.meta.env.VITE_CLERK_PUBLISHABLE_KEY);
@@ -15,13 +16,14 @@ export function SignInPage() {
   }
 
   return (
-    <div className="frame clerk-slot">
+    <AuthLayout mode="sign-in">
       <SignIn
         routing="path"
         path="/sign-in"
         signUpUrl="/sign-up"
         forceRedirectUrl="/account"
+        appearance={authAppearance}
       />
-    </div>
+    </AuthLayout>
   );
 }
