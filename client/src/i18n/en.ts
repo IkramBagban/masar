@@ -162,7 +162,7 @@ export const en: Dictionary = {
     titleA: "Know where",
     titleB: "to ",
     titleC: "start.",
-    lede: "Tell us what's bothering you. Masār asks a few questions and helps you understand your next step in healthcare — the right specialist, how urgent it is, and what to say when you get there.",
+    lede: "Tell us what's bothering you. Masār asks a few questions and helps you understand your next step in healthcare: the right specialist, how urgent it is, and what to say when you get there.",
     inputPh: "What's bothering you?",
     chip1: "Headache",
     chip2: "Stomach pain",
@@ -252,9 +252,9 @@ export const en: Dictionary = {
     emergD:
       "In a critical emergency, call 998 (UAE) / 997 (KSA) / 999 directly. Masār is for guidance, not emergency response.",
     q1: "Is Masār a medical diagnosis?",
-    a1: "No. Masār is navigation guidance — not a medical diagnosis or prescription. It helps you understand which specialist to see, how urgent your situation is, and what details to share when you arrive at the clinic.",
+    a1: "No. Masār is navigation guidance, not a medical diagnosis or prescription. It helps you understand which specialist to see, how urgent your situation is, and what details to share when you arrive at the clinic.",
     q2: "What languages and dialects can I use?",
-    a2: "You can describe what you feel in Modern Standard Arabic, everyday Gulf dialects, or English. Speak naturally in your own words — you don't need clinical vocabulary.",
+    a2: "You can describe what you feel in Modern Standard Arabic, everyday Gulf dialects, or English. Speak naturally in your own words. You don't need clinical vocabulary.",
     q3: "Is my personal health information private?",
     a3: "Yes, strictly. Health queries are encrypted end-to-end. We never sell your personal information to insurers, pharmaceutical companies, or third-party advertisers.",
     q4: "How does Masār decide which specialist to recommend?",
@@ -263,7 +263,7 @@ export const en: Dictionary = {
     a5: "Yes. You can describe symptoms for your child, spouse, or elderly parent. Masār will ask relevant age-specific questions to ensure appropriate routing.",
   },
   wait: {
-    badge: "BATCH 1 ONBOARDING — DUBAI & RIYADH",
+    badge: "BATCH 1 ONBOARDING · DUBAI & RIYADH",
     titleA: "Know where to start.",
     titleB: "Join the waitlist.",
     lede: "Be first to access Masār across the Gulf. Get priority navigation guidance and clinic notes for you and your family.",
@@ -282,7 +282,7 @@ export const en: Dictionary = {
     waitlist: "Waitlist",
     account: "My Account",
     legal:
-      "Guidance only — not medical advice or diagnosis. In an emergency dial 998 (UAE) / 997 (KSA) / 999.",
+      "Guidance only, not medical advice or diagnosis. In an emergency dial 998 (UAE) / 997 (KSA) / 999.",
     privacy: "Privacy",
     terms: "Terms",
   },

@@ -34,7 +34,7 @@ export function ChatCard() {
 
   return (
     <div
-      className="stage bg-white/95 backdrop-blur-xl rounded-[26px] shadow-[0_28px_60px_-28px_rgba(21,33,31,.35)] border border-white/70 overflow-hidden"
+      className="stage chat-card bg-white/95 backdrop-blur-xl rounded-[26px] shadow-[0_28px_60px_-28px_rgba(21,33,31,.35)] border border-white/70 overflow-hidden"
       style={{ animationDelay: ".15s" }}
     >
       <div className="flex items-center justify-between px-4 pt-3.5 pb-2.5">
@@ -135,14 +135,6 @@ export function ChatCard() {
               10:26 AM
             </div>
           </div>
-        </div>
-        {/* typing */}
-        <div className="flex gap-2 items-start">
-          <span className="bg-white border border-black/5 shadow-sm rounded-full px-4 py-3 flex items-center gap-1.5">
-            <span className="tdot"></span>
-            <span className="tdot"></span>
-            <span className="tdot"></span>
-          </span>
         </div>
       </div>
       {/* input + send */}

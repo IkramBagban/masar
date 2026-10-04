@@ -9,9 +9,9 @@ export function How() {
   return (
     <section id="how">
       <div className="relative mx-auto max-w-[1240px] scroll-mt-24 px-5 pb-14 pt-14 text-center sm:px-6 md:px-10 md:pb-16 md:pt-16">
-        {/* <p className="text-[12.5px] font-semibold tracking-[.22em] text-muted">
+        <p className="text-[12.5px] font-semibold tracking-[.22em] text-muted">
           {t.how.eyebrow}
-        </p> */}
+        </p>
         <h2 className="serif mt-4 text-[clamp(2rem,10vw,2.125rem)] leading-[1.15] md:text-[52px]">
           <span>{t.how.titleA}</span>
           <br />
