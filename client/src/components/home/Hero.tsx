@@ -1,8 +1,37 @@
+import { Link } from "react-router";
+import { useAuth } from "@clerk/clerk-react";
 import { useHomeStrings } from "./copy";
 import { ChatCard } from "./ChatCard";
 import { HeroCopy } from "./HeroCopy";
-import { SymptomForm } from "./SymptomForm";
+// import { SymptomForm } from "./SymptomForm";
 import { TrustRow } from "./TrustRow";
+
+const clerkEnabled = Boolean(import.meta.env.VITE_CLERK_PUBLISHABLE_KEY);
+
+function HeroActions() {
+  const { t } = useHomeStrings();
+  const { isLoaded, isSignedIn } = useAuth();
+  if (!isLoaded || isSignedIn) return null;
+  return (
+    <div className="mt-5 flex flex-wrap items-center gap-3">
+      <Link
+        to="/#waitlist"
+        className="inline-flex items-center gap-2 rounded-full bg-pill py-3 pl-6 pr-5 text-[15px] font-semibold text-white hover:opacity-90"
+      >
+        <span>{t.nav.cta}</span>
+        <span className="dir-flip" aria-hidden="true">
+          →
+        </span>
+      </Link>
+      <Link
+        to="/sign-in"
+        className="inline-flex items-center rounded-full border border-line bg-white/70 px-6 py-3 text-[15px] font-semibold text-ink transition hover:bg-white"
+      >
+        {t.nav.signIn}
+      </Link>
+    </div>
+  );
+}
 
 export function Hero() {
   const { locale } = useHomeStrings();
@@ -30,7 +59,8 @@ export function Hero() {
         {/* LEFT */}
         <div className="w-full min-w-0 max-w-[600px]">
           <HeroCopy />
-          <SymptomForm />
+          {/* <SymptomForm /> */}
+          {clerkEnabled && <HeroActions />}
           <TrustRow />
         </div>
 

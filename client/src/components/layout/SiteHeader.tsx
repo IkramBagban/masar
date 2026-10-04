@@ -24,17 +24,7 @@ function initialsFor(
 function HeaderAuth() {
   const { isLoaded, isSignedIn } = useAuth();
   const { t } = useLocale();
-  if (!isLoaded) return null;
-  if (!isSignedIn) {
-    return (
-      <Link
-        to="/sign-in"
-        className="inline-flex shrink-0 items-center rounded-full border border-line px-5 py-3 text-[15px] font-semibold text-ink transition hover:bg-white"
-      >
-        {t.nav.signIn}
-      </Link>
-    );
-  }
+  if (!isLoaded || !isSignedIn) return null;
   return <UserChip accountLabel={t.nav.account} signOutLabel={t.account.signOut} />;
 }
 
@@ -157,17 +147,6 @@ export function SiteHeader() {
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <LanguageToggle />
           {clerkEnabled && <HeaderAuth />}
-          {isHome && (
-            <Link
-              to="/#waitlist"
-              className="hidden items-center gap-2 rounded-full bg-pill py-3 pl-6 pr-5 text-[15px] font-semibold text-white hover:opacity-90 sm:inline-flex"
-            >
-              <span>{t.nav.cta}</span>
-              <span className="dir-flip" aria-hidden="true">
-                →
-              </span>
-            </Link>
-          )}
         </div>
       </div>
       {isHome && (
