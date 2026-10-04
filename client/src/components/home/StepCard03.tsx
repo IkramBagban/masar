@@ -5,10 +5,21 @@ export function StepCard03() {
 
   return (
     <div className="flex flex-col">
-      <span className="inline-grid place-items-center w-12 h-12 rounded-full bg-[#EAF4EE] text-pine border border-line serif text-[17px] font-semibold">
+      {/* <span className="inline-grid place-items-center w-12 h-12 rounded-full bg-[#EAF4EE] text-pine border border-line serif text-[17px] font-semibold">
         03
-      </span>
-      <div className="mt-3 flex-1 bg-white border border-line rounded-[24px] p-4 shadow-[0_20px_50px_-30px_rgba(21,33,31,.35)]">
+      </span> */}
+      <div className="flex items-center gap-3">
+        <span className="inline-grid place-items-center w-12 h-12 shrink-0 rounded-full bg-[#EAF4EE] text-pine border border-line serif text-[17px] font-semibold">
+          3
+        </span>
+        <h3 className="step-title serif text-[24px] leading-tight">
+          {t.how.card3tA} {t.how.card3tB}
+        </h3>
+      </div>
+      <p className="text-ink/55 text-[15px] leading-relaxed mt-3">
+        {t.how.card3d}
+      </p>
+      <div className="mt-4 flex-1 bg-white border border-line rounded-[24px] p-4 shadow-[0_20px_50px_-30px_rgba(21,33,31,.35)]">
         <div className="flex items-center gap-3 bg-[#FEF7EC] rounded-2xl px-4 py-3.5">
           <span className="w-9 h-9 rounded-full bg-[#FDE8CA] grid place-items-center shrink-0">
             <span className="w-3.5 h-3.5 rounded-full bg-[#D97706]"></span>
@@ -68,12 +79,6 @@ export function StepCard03() {
           </span>
         </div>
       </div>
-      <h3 className="step-title serif text-[30px] leading-tight mt-6 md:min-h-[74px]">
-        {t.how.card3tA} {t.how.card3tB}
-      </h3>
-      <p className="text-ink/55 text-[15px] leading-relaxed mt-2 md:min-h-[72px]">
-        {t.how.card3d}
-      </p>
     </div>
   );
 }

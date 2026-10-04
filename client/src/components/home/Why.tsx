@@ -19,7 +19,7 @@ export function Why() {
   ];
 
   return (
-    <section id="why" className="scroll-mt-24 px-3 py-4 sm:px-5 md:py-8">
+    <section id="why" className="scroll-mt-20 px-3 py-4 sm:px-5 md:py-8">
       <div className="mx-auto max-w-[1280px] px-5 sm:px-8 md:px-12">
         <div className="mx-auto max-w-[1180px]">
           <div className="max-w-[720px]">

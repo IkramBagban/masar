@@ -19,9 +19,9 @@ export function How() {
             {t.how.titleB ? <span>{t.how.titleB}</span> : null}
             <span className="text-slateteal">{t.how.titleC}</span>
           </h2>
-          {/* <p className="mx-auto mt-4 max-w-[62ch] text-[15px] text-ink/55 sm:text-[16.5px]">
+          <p className="mx-auto mt-4 max-w-[62ch] text-[15px] text-ink/55 sm:text-[16.5px]">
             {t.how.lede}
-          </p> */}
+          </p>
 
           <div className="mt-8 grid items-stretch gap-8 text-start md:mt-10 md:grid-cols-3 md:gap-8">
             <StepCard01 />
