@@ -139,6 +139,11 @@ export type Dictionary = {
   };
   account: {
     title: string;
+    cardSub: string;
+    welcomeEyebrow: string;
+    welcomeLede: string;
+    clearerTitle: string;
+    clearerLede: string;
     emailLabel: string;
     signedUpLabel: string;
     loading: string;
@@ -300,8 +305,14 @@ export const en: Dictionary = {
     terms: "Terms",
   },
   account: {
-    title: "My Account",
-    emailLabel: "Email",
+    title: "Your account",
+    cardSub: "Here's your account information.",
+    welcomeEyebrow: "WELCOME BACK",
+    welcomeLede:
+      "We're glad to have you here. Masār will help you navigate your health journey with clarity.",
+    clearerTitle: "A clearer way into healthcare.",
+    clearerLede: "Ask questions, get guidance, and make informed decisions.",
+    emailLabel: "Email address",
     signedUpLabel: "Member since",
     loading: "Loading…",
     error: "Could not load your account.",
@@ -310,17 +321,18 @@ export const en: Dictionary = {
     signOut: "Sign out",
   },
   auth: {
-    eyebrow: "MASĀR ACCOUNT",
-    signInTitle: "Welcome back.",
+    eyebrow: "MASĀR",
+    signInTitle: "A clearer next step in care.",
     signInLede:
-      "Sign in to keep your waitlist spot and manage your account.",
-    signUpTitle: "Create your account.",
-    signUpLede: "Sign up so we can invite you when Batch 1 opens.",
-    p1t: "Right specialist",
-    p1d: "Know which clinician to consider.",
-    p2t: "Urgency, calmly",
-    p2d: "Understand how soon to act.",
-    p3t: "What to say",
-    p3d: "Arrive with a simple summary.",
+      "Sign in to continue your health journey with clarity and confidence.",
+    signUpTitle: "A clearer next step in care.",
+    signUpLede:
+      "Sign up to start your health journey with clarity and confidence.",
+    p1t: "Understand what to do next",
+    p1d: "Get clear, personalized guidance.",
+    p2t: "Know how urgent it may be",
+    p2d: "Feel more prepared and less anxious.",
+    p3t: "Arrive prepared for your visit",
+    p3d: "Ask better questions and make informed decisions.",
   },
 };

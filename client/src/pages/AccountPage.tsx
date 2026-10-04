@@ -17,7 +17,7 @@ export function AccountPage() {
 function ClerkMissing() {
   const { t } = useLocale();
   return (
-    <div className="frame py-24">
+    <div className="mx-auto w-full max-w-[1280px] px-5 py-24 sm:px-6 md:px-10">
       <p className="max-w-md text-start text-ink">{t.account.authMissing}</p>
     </div>
   );
@@ -29,7 +29,10 @@ function AccountGate() {
 
   if (!isLoaded) {
     return (
-      <p className="frame py-24 text-start text-ink" role="status">
+      <p
+        className="mx-auto w-full max-w-[1280px] px-5 py-24 text-start text-ink sm:px-6 md:px-10"
+        role="status"
+      >
         {t.account.loading}
       </p>
     );
@@ -59,7 +62,10 @@ function AccountData() {
 
   if (account.isPending) {
     return (
-      <p className="frame py-24 text-start text-ink" role="status">
+      <p
+        className="mx-auto w-full max-w-[1280px] px-5 py-24 text-start text-ink sm:px-6 md:px-10"
+        role="status"
+      >
         {t.account.loading}
       </p>
     );
@@ -67,14 +73,17 @@ function AccountData() {
 
   if (account.isError) {
     return (
-      <p className="frame py-24 text-start text-slate" role="alert">
+      <p
+        className="mx-auto w-full max-w-[1280px] px-5 py-24 text-start text-slate sm:px-6 md:px-10"
+        role="alert"
+      >
         {account.error.message}
       </p>
     );
   }
 
   return (
-    <div className="frame py-16">
+    <div className="mx-auto w-full max-w-[1280px] px-5 py-10 sm:px-6 md:px-10 md:py-14">
       <AccountCard
         email={account.data.email}
         signedUpAt={account.data.signedUpAt}

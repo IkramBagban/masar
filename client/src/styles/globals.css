@@ -325,6 +325,15 @@ html[dir="rtl"] .why-arrow {
   outline-offset: 3px;
 }
 
+/* Tailwind v4 defaults buttons to cursor: default — restore pointer
+   for everything clickable (links, buttons, summaries). */
+a,
+button:not(:disabled),
+summary,
+[role="button"] {
+  cursor: pointer;
+}
+
 .frame {
   width: 100%;
   max-width: 72rem;
