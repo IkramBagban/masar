@@ -6,6 +6,6 @@ export const webhookRouter = Router();
 
 webhookRouter.post(
   "/",
-  express.raw({ type: "*/*" }),
+  express.raw({ type: "*/*" }), // Parse the request body as raw bytes for webhook verification
   asyncHandler(handleClerkWebhook),
 );

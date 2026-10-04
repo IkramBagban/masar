@@ -1,12 +1,12 @@
 # Masār مسار — Know where to start.
 
-AI care navigator for the Gulf. Tell us what's bothering you in Arabic or English, answer 2–3 questions, get your next step: right specialist, urgency, what to say at the clinic.
+Masār (مسار, Arabic for "path") is an AI care navigator for the Gulf. You describe what's bothering you in plain Arabic or English, answer two or three follow-up questions, and get a clear next step — the right specialist, how urgent it is, and what to tell your doctor. Guidance only, never a diagnosis.
 
 This repo uses a personal Clerk **test** project. Keys are not committed. Create your own free Clerk app and paste keys into `.env`.
 
 ## Setup
 
-Requirements: Node.js 20+, PostgreSQL 16, Docker (for local DB).
+Requirements: Node.js, Docker (for local DB).
 
 ```bash
 git clone https://github.com/IkramBagban/masar.git masar
@@ -40,7 +40,10 @@ npm run dev:client
 | `VITE_CLERK_PUBLISHABLE_KEY` | Same publishable key, exposed to client |
 | `VITE_API_URL` | Leave empty in dev (Vite proxy used) |
 
-In Clerk dashboard: add `http://localhost:5173` origin, paths `/sign-in` `/sign-up`, webhook `POST /api/webhooks/clerk` subscribed to `user.created`. For local delivery use a tunnel (e.g. ngrok). If webhook hasn't arrived, opening `/account` upserts the user row from verified session — `signed_up_at` written once, never overwritten.
+Clerk setup (free tier is enough):
+1. Create a free application in the [Clerk dashboard](https://dashboard.clerk.com).
+2. Go to Configure → Developers → Webhooks → Endpoints and add an endpoint `https://<your-backend>/api/webhooks/clerk` subscribed to `user.created` (for local dev, point it at a tunnel like ngrok or cloudflared so Clerk can reach your server).
+3. Paste the publishable key, secret key, and webhook signing secret into `.env`.
 
 ## What I'd do with more time
 
