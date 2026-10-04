@@ -21,6 +21,11 @@ function readError(payload: unknown, status: number): string {
   return `Request failed (${status})`;
 }
 
+const API_BASE = (import.meta.env.VITE_API_URL as string | undefined)?.replace(
+  /\/$/,
+  "",
+) ?? "";
+
 async function apiFetch<T>(path: string, options: ApiOptions = {}): Promise<T> {
   const headers = new Headers();
   if (options.body !== undefined) {
@@ -30,7 +35,7 @@ async function apiFetch<T>(path: string, options: ApiOptions = {}): Promise<T> {
     headers.set("Authorization", `Bearer ${options.token}`);
   }
 
-  const response = await fetch(path, {
+  const response = await fetch(`${API_BASE}${path}`, {
     method: options.method ?? "GET",
     headers,
     body: options.body !== undefined ? JSON.stringify(options.body) : undefined,
