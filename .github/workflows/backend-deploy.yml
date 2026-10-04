@@ -68,4 +68,13 @@ jobs:
               -e CLERK_WEBHOOK_SIGNING_SECRET="${{ secrets.CLERK_WEBHOOK_SIGNING_SECRET }}" \
               ikrambagban/masar-server:${{ github.sha }}
             sleep 8
-            curl -fsS http://localhost:3001/api/health
+            for i in $(seq 1 12); do
+              if curl -fsS http://localhost:3001/api/health; then
+                exit 0
+              fi
+              echo "health check attempt $i/12 failed, retrying in 10s..."
+              sleep 10
+            done
+            echo "backend never became healthy:"
+            docker logs masar-server --tail 20 || true
+            exit 1
