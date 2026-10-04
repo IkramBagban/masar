@@ -1,6 +1,9 @@
 import { useLocale } from "../../i18n";
 
-// Shared Masār wordmark: arch mark + locale brand ("Masār" in EN, "مسار" in AR).
+// Shared Masār wordmark: arch mark + locale brand ("Masar" in EN, "مسار" in AR).
+// The EN lockup intentionally omits the macron: Fraunces renders ā's mark
+// shifted over the r at display sizes, which reads as a typo. Prose keeps
+// the proper "Masār" (Outfit renders it correctly).
 // size="nav" matches the header (34x26, text 26px);
 // size="footer" matches the footer (30x23, text 22px).
 type WordmarkProps = {
@@ -28,7 +31,7 @@ export function Wordmark({ size = "nav" }: WordmarkProps) {
             : "text-[22px] text-ink"
         } ${isAr ? "font-arabic" : ""}`}
       >
-        {isAr ? "مسار" : "Masār"}
+        {isAr ? "مسار" : "Masar"}
       </span>
     </span>
   );

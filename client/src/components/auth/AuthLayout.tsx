@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CalendarDays, Clock, FileText } from "lucide-react";
 import { useLocale } from "../../i18n";
 
 type AuthLayoutProps = {
@@ -29,39 +30,35 @@ export function AuthLayout({ mode, children }: AuthLayoutProps) {
   const title = mode === "sign-in" ? a.signInTitle : a.signUpTitle;
   const lede = mode === "sign-in" ? a.signInLede : a.signUpLede;
   const points = [
-    { t: a.p1t, d: a.p1d },
-    { t: a.p2t, d: a.p2d },
-    { t: a.p3t, d: a.p3d },
+    { icon: FileText, t: a.p1t, d: a.p1d },
+    { icon: Clock, t: a.p2t, d: a.p2d },
+    { icon: CalendarDays, t: a.p3t, d: a.p3d },
   ];
 
   return (
-    <div className="frame py-10 md:py-16">
-      <div className="grid items-start gap-8 lg:grid-cols-[1fr_minmax(0,26rem)] lg:gap-12">
-        <section className="min-w-0 rounded-[28px] border border-line bg-[#FAFCFA] p-6 sm:p-8 md:p-10">
-          <p className="text-[12.5px] font-semibold tracking-[.22em] text-muted">
+    <div className="relative overflow-hidden">
+      <div className="relative mx-auto grid w-full max-w-[1280px] items-start gap-10 px-5 pb-16 pt-10 sm:px-6 md:px-10 md:pb-20 md:pt-14 lg:grid-cols-[1.05fr_minmax(0,27rem)] lg:gap-12">
+        <section className="min-w-0 pt-2 md:pt-6">
+          <p className="text-start text-[13px] font-semibold tracking-[.28em] text-ink/50">
             {a.eyebrow}
           </p>
-          <h1 className="serif mt-3 text-start text-[clamp(1.75rem,4vw,2.5rem)] leading-tight text-ink">
+          <h1 className="serif mt-4 max-w-[16ch] text-start text-[clamp(2.5rem,6vw,4rem)] leading-[1.05] text-ink">
             {title}
           </h1>
-          <p className="mt-3 max-w-[52ch] text-start text-[15px] leading-relaxed text-ink/60">
+          <p className="mt-5 max-w-[46ch] text-start text-[16px] leading-relaxed text-ink/60 sm:text-[18px]">
             {lede}
           </p>
-          <ul className="mt-8 space-y-3">
+          <ul className="mt-10 space-y-6">
             {points.map((point) => (
-              <li
-                key={point.t}
-                className="flex items-start gap-3 rounded-2xl border border-line bg-white px-4 py-3.5"
-              >
-                <span
-                  aria-hidden="true"
-                  className="mt-1.5 size-2 shrink-0 rounded-full bg-pine"
-                />
-                <span className="min-w-0">
-                  <span className="block text-start text-[14.5px] font-semibold text-ink">
+              <li key={point.t} className="flex items-start gap-4">
+                <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-[#EAF4EE] text-pine">
+                  <point.icon className="size-5" aria-hidden="true" />
+                </span>
+                <span className="min-w-0 pt-0.5">
+                  <span className="block text-start text-[15.5px] font-semibold text-ink">
                     {point.t}
                   </span>
-                  <span className="block text-start text-[13.5px] text-ink/60">
+                  <span className="mt-0.5 block text-start text-[14.5px] text-ink/60">
                     {point.d}
                   </span>
                 </span>

@@ -5,7 +5,7 @@ import { users } from "../db/schema.js";
 import { HttpError } from "../lib/httpError.js";
 
 export async function handleClerkWebhook(req: Request, res: Response) {
-  let evt: Awaited<ReturnType<typeof verifyWebhook>>;
+  let evt;
 
   try {
     evt = await verifyWebhook(req);
